@@ -1,0 +1,11 @@
+// This is the Basic Contract Sturcture
+
+// SPDX - License - Identifier : MIT
+pragma solidity ^0.8.9;
+
+contract HelloWorld {
+   // This is a comment
+   /*
+   This is a multiline comment
+   */
+}
