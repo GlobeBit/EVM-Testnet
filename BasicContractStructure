@@ -1,4 +1,4 @@
-// This is the Basic Contract Sturcture
+// This is the Basic Contract structure
 
 // SPDX - License - Identifier : MIT
 pragma solidity ^0.8.9;
