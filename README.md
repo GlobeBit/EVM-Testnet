@@ -1,2 +1,2 @@
-# IOTA-EVM-Testnet
+# EVM-Testnet
 deploy smart contracts on several testnets
