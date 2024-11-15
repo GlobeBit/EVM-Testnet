@@ -1,2 +1,2 @@
 # EVM-Testnet
-deploy smart contracts on Test-Nets
+Deploy smart contracts on Test-Nets and learn.
