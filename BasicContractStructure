@@ -1,11 +1,12 @@
-// This is the Basic Contract structure which I used previously
+// Legacy reference file kept for learning notes.
+// This is not used by Hardhat compilation or deployment.
 
-// SPDX - License - Identifier : MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
 contract HelloWorld {
-   // This is a comment
-   /*
-   This is a multiline comment
-   */
+    // This is a comment
+    /*
+    This is a multiline comment
+    */
 }
