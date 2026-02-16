@@ -5,29 +5,46 @@ contract Token {
     string public name = "My Test Token";
     string public symbol = "MTT";
     uint8 public decimals = 18;
-    uint256 public totalSupply = 1000000 * (10 ** decimals);
-    
+    uint256 public totalSupply = 1_000_000 * (10 ** decimals);
+
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
-    
+
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
-    
+
     constructor() {
         balanceOf[msg.sender] = totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply);
     }
-    
-    function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(balanceOf[msg.sender] >= _value, "Insufficient balance");
-        balanceOf[msg.sender] -= _value;
-        balanceOf[_to] += _value;
-        emit Transfer(msg.sender, _to, _value);
+
+    function transfer(address to, uint256 value) external returns (bool success) {
+        _transfer(msg.sender, to, value);
         return true;
     }
-    
-    function approve(address _spender, uint256 _value) public returns (bool success) {
-        allowance[msg.sender][_spender] = _value;
-        emit Approval(msg.sender, _spender, _value);
+
+    function approve(address spender, uint256 value) external returns (bool success) {
+        allowance[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
         return true;
+    }
+
+    function transferFrom(address from, address to, uint256 value) external returns (bool success) {
+        require(allowance[from][msg.sender] >= value, "Insufficient allowance");
+
+        allowance[from][msg.sender] -= value;
+        _transfer(from, to, value);
+
+        return true;
+    }
+
+    function _transfer(address from, address to, uint256 value) internal {
+        require(to != address(0), "Invalid recipient");
+        require(balanceOf[from] >= value, "Insufficient balance");
+
+        balanceOf[from] -= value;
+        balanceOf[to] += value;
+
+        emit Transfer(from, to, value);
     }
 }
